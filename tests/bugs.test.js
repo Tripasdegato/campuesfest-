@@ -22,13 +22,13 @@ import {
 
 const event = (overrides) => ({ id: 'x', title: 'Evento', venue: 'Aula', categoryLabel: 'Feria', date: '2026-11-26', capacity: 10, registered: 0, price: 0, ...overrides });
 
-test.skip('[BUG-0 · guiado] Los cupos nunca son negativos y un evento sobrevendido está lleno', () => {
+test('[BUG-0 · guiado] Los cupos nunca son negativos y un evento sobrevendido está lleno', () => {
   const sobrevendido = event({ capacity: 30, registered: 33 });
   assert.equal(spotsLeft(sobrevendido), 0, 'spotsLeft no debe regresar números negativos');
   assert.equal(isFull(sobrevendido), true, 'un evento con más inscritos que cupo debe estar lleno');
 });
 
-test.skip('[BUG-1] Los eventos se ordenan por fecha real (noviembre antes que diciembre)', () => {
+test('[BUG-1] Los eventos se ordenan por fecha real (noviembre antes que diciembre)', () => {
   const ordenados = sortByDate([
     event({ id: 'posada', date: '2026-12-02' }),
     event({ id: 'hackathon', date: '2026-11-23' }),
@@ -37,33 +37,33 @@ test.skip('[BUG-1] Los eventos se ordenan por fecha real (noviembre antes que di
   assert.deepEqual(ordenados.map((e) => e.id), ['hackathon', 'feria', 'posada']);
 });
 
-test.skip('[BUG-2] La búsqueda ignora acentos y mayúsculas', () => {
+test('[BUG-2] La búsqueda ignora acentos y mayúsculas', () => {
   const brazo = event({ title: 'Brazo robótico con Arduino', categoryLabel: 'Robótica' });
   assert.equal(matchesSearch(brazo, 'robotica'), true, '"robotica" debe encontrar "Robótica"');
   assert.equal(matchesSearch(brazo, 'ROBÓTICO'), true, '"ROBÓTICO" debe encontrar "robótico"');
 });
 
-test.skip('[BUG-3] La fecha corta muestra el mes correcto', () => {
+test('[BUG-3] La fecha corta muestra el mes correcto', () => {
   assert.equal(formatShortDate('2026-11-24'), '24/11');
   assert.equal(formatShortDate('2026-12-02'), '02/12');
 });
 
-test.skip('[BUG-4] Un evento sin costo dice "Gratis"', () => {
+test('[BUG-4] Un evento sin costo dice "Gratis"', () => {
   assert.equal(formatPrice(0), 'Gratis');
   assert.equal(formatPrice(50), '$50');
 });
 
-test.skip('[BUG-5] "1 lugar" en singular', () => {
+test('[BUG-5] "1 lugar" en singular', () => {
   assert.equal(spotsLabel(event({ capacity: 120, registered: 119 })), '1 lugar');
   assert.equal(spotsLabel(event({ capacity: 20, registered: 12 })), '8 lugares');
 });
 
-test.skip('[BUG-6] Un evento que ya pasó dice "Finalizado"', () => {
+test('[BUG-6] Un evento que ya pasó dice "Finalizado"', () => {
   assert.equal(countdownLabel('2026-11-23', '2026-11-26'), 'Finalizado');
   assert.equal(countdownLabel('2026-11-30', '2026-11-26'), 'Faltan 4 días');
 });
 
-test.skip('[BUG-7] El texto secundario se puede leer (contraste mínimo 4.5:1)', () => {
+test('[BUG-7] El texto secundario se puede leer (contraste mínimo 4.5:1)', () => {
   const css = readFileSync(new URL('../src/css/styles.css', import.meta.url), 'utf8');
   const muted = css.match(/--text-muted:\s*(#[0-9a-fA-F]{6})/)?.[1];
   const surface = css.match(/--surface:\s*(#[0-9a-fA-F]{6})/)?.[1];

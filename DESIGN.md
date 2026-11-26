@@ -10,7 +10,7 @@ World: transit signage in the Lance Wyman tradition. The engineering week is dra
 | `--ground` | `#eef0f3` | Page background (cool off-white, signage paper) |
 | `--surface` | `#ffffff` | Event cards, inputs, chips |
 | `--ink-soft` | `#3d3e45` | Secondary text |
-| `--text-muted` | `#5f5b53` when fixed | Meta text. Ships as `#aba69d` on purpose (BUG-7) |
+| `--text-muted` | `#5f5b53` | Meta text with accessible contrast against the white surface |
 | `--rule` | `#dadee5` | Hairlines and borders |
 | `--line-hackathon` | `#d81e6c` | Hackathon line |
 | `--line-robotica` | `#d85d0c` | Robotics line |
