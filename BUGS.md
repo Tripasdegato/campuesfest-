@@ -1,23 +1,23 @@
 # Bugs de CampusFest
 
-Cada bug **se ve en la app** y tiene una prueba desactivada en `tests/bugs.test.js`.
+Los ocho defectos descritos abajo están corregidos en esta rama. Sus pruebas de regresión están activas en `tests/bugs.test.js`.
 
 **Ciclo para cada bug:** crea una rama → quita `.skip` de su prueba → abre un PR → **rojo** ❌ → corrige el código en `src/` → **verde** ✅ → merge → se publica.
 
 > No cambies lo que la prueba espera. El marcador usa **pruebas oficiales** sobre tu sitio publicado: si “arreglas” la prueba en lugar del código, no suma puntos.
 
-| Bug | Lo que ves en la app | Dónde buscar | Puntos |
+| Bug | Defecto corregido | Implementación | Puntos |
 |---|---|---|---|
-| **BUG-0 · guiado** | La Batalla de minisumo dice **“-3 lugares”** y sigue dejando inscribirse | `src/js/logic.js` → `spotsLeft` | 20 |
-| **BUG-1** | La **Posada de proyectos** (diciembre) aparece **antes** que los eventos de noviembre | `src/js/logic.js` → `sortByDate` | 10 |
-| **BUG-2** | Buscar **robotica** no encuentra nada, pero **Robótica** sí | `src/js/logic.js` → `matchesSearch` | 10 |
-| **BUG-3** | Las fechas dicen **24/10**, pero la semana es en **noviembre** | `src/js/logic.js` → `formatShortDate` | 10 |
-| **BUG-4** | Los eventos sin costo dicen **“$0”** en lugar de **“Gratis”** | `src/js/logic.js` → `formatPrice` | 10 |
-| **BUG-5** | La conferencia de IA dice **“1 lugares”** | `src/js/logic.js` → `spotsLabel` | 10 |
-| **BUG-6** | Los eventos que ya pasaron dicen **“Faltan -3 días”** | `src/js/logic.js` → `countdownLabel` | 10 |
-| **BUG-7** | La hora y el lugar de cada evento casi **no se leen** (gris muy claro) | `src/css/styles.css` → `--text-muted` | 10 |
+| **BUG-0 · guiado** | Los cupos disponibles nunca son negativos y un evento sobrevendido cuenta como lleno | `src/js/logic.js` → `spotsLeft` | 20 |
+| **BUG-1** | Los eventos se ordenan cronológicamente, incluso al cambiar de mes | `src/js/logic.js` → `sortByDate` | 10 |
+| **BUG-2** | La búsqueda ignora acentos y mayúsculas | `src/js/logic.js` → `matchesSearch` | 10 |
+| **BUG-3** | Las fechas muestran el mes correcto | `src/js/logic.js` → `formatShortDate` | 10 |
+| **BUG-4** | Los eventos sin costo muestran **“Gratis”** | `src/js/logic.js` → `formatPrice` | 10 |
+| **BUG-5** | El número de lugares usa singular o plural correctamente | `src/js/logic.js` → `spotsLabel` | 10 |
+| **BUG-6** | Los eventos que ya pasaron muestran **“Finalizado”** | `src/js/logic.js` → `countdownLabel` | 10 |
+| **BUG-7** | El texto secundario cumple el contraste mínimo 4.5:1 | `src/css/styles.css` → `--text-muted` | 10 |
 
-## Pistas (por si te atoras)
+## Pistas de implementación
 
 <details><summary>BUG-0</summary>Un número nunca debe bajar de 0. Busca <code>Math.max</code>.</details>
 <details><summary>BUG-1</summary>Se compara el texto “dd/mm”. Las fechas originales vienen como “2026-11-24”: ese formato sí se ordena bien como texto.</details>

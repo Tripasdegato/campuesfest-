@@ -6,6 +6,8 @@ CampusFest es la cartelera (ficticia) de la Semana de Ingeniería. Tiene **8 bug
 
 > Puedes usar IA. Aquí el juez no es el instructor ni la IA: **es el pipeline**.
 
+> **Estado de esta rama:** contiene la solución de referencia; los ocho defectos están corregidos y sus pruebas están activas. Los pasos de abajo describen el ejercicio sobre la versión base del taller.
+
 Solo necesitas un navegador y tu cuenta de GitHub. No instalas nada.
 
 ---

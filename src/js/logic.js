@@ -16,7 +16,7 @@ function pad(number) {
 // ---------- Cupos ----------
 
 export function spotsLeft(event) {
-  return event.capacity - event.registered;
+  return Math.max(0, event.capacity - event.registered);
 }
 
 export function isFull(event) {
@@ -27,20 +27,21 @@ export function spotsLabel(event) {
   if (isFull(event)) {
     return 'Cupo lleno';
   }
-  return `${spotsLeft(event)} lugares`;
+  const left = spotsLeft(event);
+  return `${left} ${left === 1 ? 'lugar' : 'lugares'}`;
 }
 
 // ---------- Precio ----------
 
 export function formatPrice(price) {
-  return `$${price}`;
+  return price === 0 ? 'Gratis' : `$${price}`;
 }
 
 // ---------- Fechas ----------
 
 export function formatShortDate(dateStr) {
   const date = toDate(dateStr);
-  return `${pad(date.getDate())}/${pad(date.getMonth())}`;
+  return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}`;
 }
 
 export function weekdayName(dateStr) {
@@ -53,6 +54,9 @@ export function daysUntil(dateStr, todayStr) {
 
 export function countdownLabel(dateStr, todayStr) {
   const days = daysUntil(dateStr, todayStr);
+  if (days < 0) {
+    return 'Finalizado';
+  }
   if (days === 0) {
     return 'Hoy';
   }
@@ -63,16 +67,18 @@ export function countdownLabel(dateStr, todayStr) {
 }
 
 export function sortByDate(events) {
-  return [...events].sort((a, b) =>
-    formatShortDate(a.date).localeCompare(formatShortDate(b.date)),
-  );
+  return [...events].sort((a, b) => a.date.localeCompare(b.date));
 }
 
 // ---------- Búsqueda y filtros ----------
 
+function normalizeSearchText(text) {
+  return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
 export function matchesSearch(event, query) {
-  const text = `${event.title} ${event.venue} ${event.categoryLabel}`.toLowerCase();
-  return text.includes(query.trim().toLowerCase());
+  const text = normalizeSearchText(`${event.title} ${event.venue} ${event.categoryLabel}`);
+  return text.includes(normalizeSearchText(query.trim()));
 }
 
 export function filterEvents(events, { query = '', category = 'todas', day = null, onlyMine = false, mine = [] } = {}) {
