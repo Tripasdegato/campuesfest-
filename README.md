@@ -2,7 +2,7 @@
 
 **Del código a la entrega: automatiza pruebas con GitHub Actions**
 
-CampusFest es la cartelera (ficticia) de la Semana de Ingeniería. Tiene **8 bugs** que se ven a simple vista. Tu misión: corregirlos y lograr que tu corrección pase por **4 workflows de GitHub Actions** hasta quedar publicada en internet.
+CampusFest es la cartelera (ficticia) de la Semana de Ingeniería. El taller que acompaña este proyecto enseña a corregir **8 defectos** y a pasar los cambios por **4 workflows de GitHub Actions** hasta publicarlos en internet.
 
 > Puedes usar IA. Aquí el juez no es el instructor ni la IA: **es el pipeline**.
 

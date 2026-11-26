@@ -2,7 +2,7 @@
 
 Los ocho defectos descritos abajo están corregidos en esta rama. Sus pruebas de regresión están activas en `tests/bugs.test.js`.
 
-**Ciclo para cada bug:** crea una rama → quita `.skip` de su prueba → abre un PR → **rojo** ❌ → corrige el código en `src/` → **verde** ✅ → merge → se publica.
+Para reproducir la solución, ejecuta `npm test`; todas las pruebas deben pasar. Las pistas de abajo describen qué debía corregirse en cada caso.
 
 > No cambies lo que la prueba espera. El marcador usa **pruebas oficiales** sobre tu sitio publicado: si “arreglas” la prueba en lugar del código, no suma puntos.
 
